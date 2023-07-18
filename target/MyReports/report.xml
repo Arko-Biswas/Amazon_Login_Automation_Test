@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="10.336" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Amazon Login" name="Login into Amazon and verifying customer page - Example #1.1" time="10.26">
+<system-out><![CDATA[
+Given I am on Amazon website................................................passed
+When I click on Hello! Sign In link at the top-right corner.................passed
+And I am navigated to Amazon Sign-In page...................................passed
+And I get Amazon Sign-In details from excel data sheet with sheetname "LoginDetails" and row-number 0.passed
+Then I place my username or phone number and click on Continue button.......passed
+And I am navigated to password input page and verify page...................passed
+Then I place my password and tick keep me signed in and click on Sign in button.passed
+And I verify my Amazon account is logged in.................................passed
+]]></system-out>
+</testcase>
+</testsuite>
