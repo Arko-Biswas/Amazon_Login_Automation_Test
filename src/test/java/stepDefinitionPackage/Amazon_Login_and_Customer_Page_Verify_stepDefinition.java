@@ -28,6 +28,20 @@ public class Amazon_Login_and_Customer_Page_Verify_stepDefinition {
 		System.out.println(">>> Page Title: "+ Amazon_Login_pageElements_obj.getPageTitle());
 	    
 	}
+	
+	@Given("I scroll down till the bottom and click Your Account")
+	public void i_scroll_down_till_the_bottom_and_click_your_account() {
+	    
+		if(Amazon_Login_pageElements_obj.scrollToYourAccountandClick()) {
+			
+			System.out.println(">>> Scrolled down to Your account and clicked");
+			
+		}else {
+			System.out.println("XXX Couldn't Scroll down to Your account and click");
+		}
+		
+	}
+	
 	@When("I click on Hello! Sign In link at the top-right corner")
 	public void i_click_on_hello_sign_in_link_at_the_top_right_corner() {
 	    
@@ -128,6 +142,32 @@ public class Amazon_Login_and_Customer_Page_Verify_stepDefinition {
 			System.out.println("XXX Couldn't verify customer page");
 		}
 		
+	}
+	
+	@Then("I hover on the Account & Lists! button and Click on sign out button")
+	public void i_hover_on_the_hello_button() {
+	    
+		if(Amazon_Login_pageElements_obj.hoverOnAccountandClickSignOut()) {
+			
+			System.out.println(">>> Hovering successful! clicking on signout button");
+			
+		}else {
+			System.out.println("XXX either could not hover or sign-out button was not clicked");
+		}
+	    
+	}
+
+	@Then("I verify that I have successfully signed out")
+	public void i_verify_that_i_have_successfully_signed_out() {
+	    
+		if(Amazon_Login_pageElements_obj.verifyAmazonSignInPage()) {
+			
+			System.out.println(">>> Navigated to Amazon Sign-In page: Sign out successfully Verified");
+			
+		}else {
+			System.out.println("XXX Couldn't navigate to Amazon Sign-In page");
+		}
+	    
 	}
 
 }

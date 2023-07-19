@@ -4,11 +4,13 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 
 public class Amazon_Login_pageElements {
 	
 	private WebDriver driver;
 	
+	private By YourAccount = By.xpath("//a[contains(text(),'Your Account')]");
 	private By LandingPageSignOnButton = By.xpath("//span[contains(text(), 'Hello, sign in')]");
 	private By VerifyAmazonSignInPage = By.xpath("//label[@for='ap_email']");
 	private By InputUserName = By.xpath("//input[@id='ap_email']");
@@ -17,6 +19,9 @@ public class Amazon_Login_pageElements {
 	private By InputPassword = By.xpath("//input[@id='ap_password']");
 	private By SignInButtonClick = By.xpath("//input[@id='signInSubmit']");
 	private By VerifyCustomerPage = By.xpath("//span[contains(text(), 'Hello, sign in')]");
+	private By HoverOnAccount = By.xpath("//span[text()='Account & Lists']");
+	private By SignOutButtonClick = By.xpath("//span[text()='Sign Out']");
+	
 	
 	public Amazon_Login_pageElements(WebDriver driver) {
 		
@@ -24,16 +29,37 @@ public class Amazon_Login_pageElements {
 		
 	}
 	
-	public void customWait() {
+	public void customWait(long customSeconds) {
 		
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(customSeconds));
 		
 	}
 	
 	public String getPageTitle() {
 		
-		customWait();
+		customWait(30);
 		return driver.getTitle();
+		
+	}
+	
+	public boolean scrollToYourAccountandClick() {
+		
+		boolean scrolled = false;
+		
+		try {
+			
+			customWait(3);
+			Actions scroll = new Actions(driver);
+			scroll.scrollToElement(driver.findElement(YourAccount)).perform();
+			Thread.sleep(3000);
+			driver.findElement(YourAccount).click();
+			scrolled = true;
+			
+		}catch(Exception e) {
+			System.out.println("!!! Exception occured: while scrolling down to Your account");
+		}
+		
+		return scrolled;
 		
 	}
 	
@@ -42,7 +68,7 @@ public class Amazon_Login_pageElements {
 		boolean clicked = false;
 		try {
 			
-			customWait();
+			customWait(30);
 			driver.findElement(LandingPageSignOnButton).click();
 			clicked = true;
 			
@@ -59,7 +85,7 @@ public class Amazon_Login_pageElements {
 		
 		try {
 			
-			customWait();
+			customWait(30);
 			driver.findElement(VerifyAmazonSignInPage).isDisplayed();
 			verify = true;
 			
@@ -77,7 +103,7 @@ public class Amazon_Login_pageElements {
 		
 		try {
 			
-			customWait();
+			customWait(30);
 			driver.findElement(InputUserName).sendKeys(username);
 			input = true;
 			
@@ -95,7 +121,7 @@ public class Amazon_Login_pageElements {
 		
 		try {
 			
-			customWait();
+			customWait(30);
 			driver.findElement(ContinueButton).click();
 			clicked = true;
 			
@@ -113,7 +139,7 @@ public class Amazon_Login_pageElements {
 		
 		try {
 			
-			customWait();
+			customWait(30);
 			driver.findElement(VerifyPasswordInputPage).isDisplayed();
 			verify = true;
 			
@@ -131,7 +157,7 @@ public class Amazon_Login_pageElements {
 		
 		try {
 			
-			customWait();
+			customWait(30);
 			driver.findElement(InputPassword).sendKeys(password);
 			input = true;
 			
@@ -149,7 +175,7 @@ public class Amazon_Login_pageElements {
 		
 		try {
 			
-			customWait();
+			customWait(30);
 			driver.findElement(SignInButtonClick).click();
 			clicked = true;
 			
@@ -167,7 +193,7 @@ public class Amazon_Login_pageElements {
 		
 		try {
 			
-			customWait();
+			customWait(30);
 			driver.findElement(VerifyCustomerPage).isDisplayed();
 			
 		}catch(Exception e) {
@@ -175,6 +201,27 @@ public class Amazon_Login_pageElements {
 		}
 		
 		return verify;
+		
+	}
+	
+	public boolean hoverOnAccountandClickSignOut() {
+		
+		boolean hover = false;
+		
+		try {
+			customWait(30);
+			
+			Actions act = new Actions(driver);
+			act.moveToElement(driver.findElement(HoverOnAccount)).perform();
+			Thread.sleep(5000);
+			driver.findElement(SignOutButtonClick).click();
+			hover = true;
+			
+		}catch(Exception e) {
+			System.out.println("!!! Exception occured: Hovering on Accounts failed.");
+		}
+		
+		return hover;
 		
 	}
 
