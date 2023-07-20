@@ -1,0 +1,33 @@
+{
+	
+	"firstName"	:	"John",
+	"lastName"	:	"Kennedy",
+	
+	"address"	:	[{
+	
+		"street"	:	"abcd",
+		"city"	:	"pune"
+	
+	},{
+	
+		"street"	:	"wxyz",
+		"city"	:	"mumbai"
+	
+	}],
+	
+	"loginTest" : [{
+	
+		"name"	:	"yourName",
+		"username"	:	"yourAmazonUser",
+		"password"	:	"yourAmazonPassword"
+	
+	},{
+	
+		"name"	:	"Someone",
+		"username"	:	"someUserName2",
+		"password"	:	"somePassword2"
+	
+	}]
+	
+	
+}

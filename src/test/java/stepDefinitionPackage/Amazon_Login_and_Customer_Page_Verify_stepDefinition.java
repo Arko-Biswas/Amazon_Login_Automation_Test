@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.json.simple.parser.ParseException;
 
 import driverFactoryPackage.DriverFactory;
 import io.cucumber.java.en.Given;
@@ -13,12 +14,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pageElementsPackage.Amazon_Login_pageElements;
 import utilitiesPackage.ExcelReader;
+import utilitiesPackage.JSONReader;
 
 public class Amazon_Login_and_Customer_Page_Verify_stepDefinition {
 	
 	String username = "";
 	String password = "";
 	private Amazon_Login_pageElements Amazon_Login_pageElements_obj = new Amazon_Login_pageElements(DriverFactory.getDriver());
+	
+	private JSONReader JSONReader_obj = new JSONReader();
 	
 	@Given("I am on Amazon website")
 	public void i_am_on_amazon_website() {
@@ -79,6 +83,16 @@ public class Amazon_Login_and_Customer_Page_Verify_stepDefinition {
 		
 		
 	}
+	
+	@When("I get Amazon Sign-In for user {string} details from JSON file")
+	public void i_get_amazon_sign_in_for_user_details_from_json_file_taking_data_from_json_file(String Name) throws IOException, ParseException {
+	    
+		username = JSONReader_obj.read_UserName_fromJSON(Name);
+		password = JSONReader_obj.read_Password_fromJSON(Name);
+		
+	}
+	
+	
 	@Then("I place my username or phone number and click on Continue button")
 	public void i_place_my_username_or_phone_number_and_click_on_continue_button() {
 	    
