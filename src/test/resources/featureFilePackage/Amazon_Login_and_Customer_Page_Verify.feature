@@ -1,4 +1,3 @@
-@Amazon_Login
 Feature: Amazon Login
 
   ####      This scenario also has hovering and clicking on elements that disappear  ####
@@ -18,3 +17,4 @@ Feature: Amazon Login
     Examples: 
       | SheetName    | RowNumber |
       | LoginDetails |         0 |
+      ## remember to put your login details in the amazonLoginTestData.xlsx file
